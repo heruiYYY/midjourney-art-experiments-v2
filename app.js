@@ -24,7 +24,7 @@ function characterWorkflow(){
    ['LibTV','https://www.libtv.com/pwa/libtv/apple-touch-icon-180.png'],
    ['Lovart','https://www.lovart.ai/favicon.ico']
   ])],
-  ['Seedance角色动画','<div class="workflow-placeholder">图片待补</div>']
+  ['Seedance角色动画',browser('liblib.tv','assets/image7.jpg','LibTV 网页的创作精选和视频案例')]
  ];
  return ['character-workflow',`
   <div class="workflow-head"><p class="eyebrow"></p><h1>角色设计流程</h1></div>
