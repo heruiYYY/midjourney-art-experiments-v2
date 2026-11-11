@@ -69,7 +69,17 @@
 .slide.divider{grid-template-columns:auto minmax(0,1fr)!important;align-items:center;gap:clamp(30px,5vw,100px);background:radial-gradient(100% 120% at 0% 100%,#2a2440 0,var(--panel) 55%)}
 .divider-no{font-size:clamp(90px,min(16vw,28vh),320px);font-weight:750;letter-spacing:-.07em;color:var(--lime);line-height:.9}
 .divider-dot{font-size:.4em;letter-spacing:normal}
-.divider-no[data-number="02.5"] .divider-dot{position:relative;left:.15em}
+/* Center the dot against the visible edges of the neighboring digits. */
+.divider-no[data-number] .divider-dot{position:relative;left:.15em}
+.divider-no[data-number="01.1"] .divider-dot{left:.24em}
+.divider-no[data-number="01.2"] .divider-dot{left:.05em}
+.divider-no[data-number="01.3"] .divider-dot{left:.11em}
+.divider-no[data-number="01.4"] .divider-dot,
+.divider-no[data-number="01.6"] .divider-dot{left:.14em}
+.divider-no[data-number="01.5"] .divider-dot{left:.10em}
+.divider-no[data-number="02.1"] .divider-dot{left:.27em}
+.divider-no[data-number="02.2"] .divider-dot{left:.09em}
+.divider-no[data-number="02.4"] .divider-dot{left:.21em}
 .divider-copy{min-width:0;text-align:left}
 .divider .body{color:var(--muted)}
 
