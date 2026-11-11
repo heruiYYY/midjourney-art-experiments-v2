@@ -464,6 +464,13 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   border-left:1px solid var(--line);
 }
 .toc-lesson-sections h4{margin:0 0 8px;color:var(--lime);font-size:13px}
+.toc-section-entry{
+  padding:0;
+  font:inherit;
+  color:inherit;
+  text-align:left;
+}
+.toc-section-entry:hover,.toc-section-entry.active{background:#333047}
 
 @media(min-width:851px){
   .toc-lesson-sections:not([hidden]){
