@@ -56,7 +56,7 @@ window.COURSE=[
 {src:'open-cover',kind:'open-cover',title:'AI 视频生成 · 课程封面',chapter:'开场',images:[],notes:'开场 1/6：课程封面。\n一句话介绍：这门课用六节课，带大家把一个想法做成视觉统一、故事基本连贯的 AI 短片。'},
 {src:'open-film',kind:'open-film',title:'先看一部成片',chapter:'开场',images:[],video:'assets/opening-film.mp4?v=3',notes:'开场 2/6：播放自己的 AI 短片《陆川》（约 55 秒）。\n不急着讲方法，先让大家看到六节课最后能做出什么。'},
 {src:'open-roadmap',kind:'open-roadmap',title:'课程路线图',chapter:'开场',images:[],notes:'开场 3/6：六节课是一条完整制作流程。\n今天在第一步：明确方向、找参考、学会判断。后面的角色、场景、镜头都建立在今天选定的美术方向上。'},
-{src:'lesson-opening',kind:'lesson-opening',title:'第 1 节 · 篇章页',chapter:'开场',images:[],
+{src:'lesson-opening',kind:'lesson-opening',title:'第 1 节 · 用 Midjourney 找到你的画面',chapter:'开场',images:[],
  body:'用 AI 把参考图里的构图、光影和风格写成提示词，再用 Midjourney 做对照实验，为下一节角色设计选定美术方向。',
  notes:'开场 4/6：介绍第一节的目标。今天会从找参考走到生成、对照和筛选，最后为下一节角色设计选一个初步的美术方向。'},
 {src:'open-idea',kind:'open-idea',title:'生成很便宜，判断才值钱',chapter:'开场',images:[],notes:'开场 5/6：核心观念。\n左：只写一个基础词，得到的是模型的默认审美。\n右：有参考、有情绪板、经过对照筛选，画面才开始有方向。\nAI 让出图变得很便宜，真正决定作品质量的是你的选择和判断。'},
