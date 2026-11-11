@@ -465,7 +465,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   padding-left:clamp(10px,2vw,22px);
   border-left:1px solid var(--line);
 }
-.toc-lesson-sections h4{margin:0 0 8px;color:var(--lime);font-size:13px}
+.toc-lesson-sections h4{margin:0 0 8px;color:var(--lime);font-size:15.6px}
 .toc-section-entry{
   padding:0;
   font:inherit;
