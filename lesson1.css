@@ -464,3 +464,17 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   border-left:1px solid var(--line);
 }
 .toc-lesson-sections h4{margin:0 0 8px;color:var(--lime);font-size:13px}
+
+@media(min-width:851px){
+  .toc-lesson-sections .toc-links{
+    display:block;
+    columns:2;
+    column-gap:7px;
+  }
+  .toc-lesson-sections .toc-links button{
+    display:block;
+    width:100%;
+    margin-bottom:7px;
+    break-inside:avoid;
+  }
+}
