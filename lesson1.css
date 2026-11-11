@@ -411,17 +411,43 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 
 /* 课程目录层级 */
 .toc-lesson{margin-top:12px}
-.toc-lesson>h3{margin:0}
+.toc-lesson-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:#262338;
+}
+.toc-lesson-header:has(.toc-lesson-entry.active){
+  border-color:var(--lime);
+  background:#333047;
+}
+.toc-lesson-header h3{margin:0}
 .toc-lesson-entry{
   width:100%;
-  border:1px solid var(--line);
-  background:#262338;
+  height:100%;
   color:var(--lime);
   text-align:left;
   font-size:clamp(15px,1.7vw,19px);
   font-weight:700;
 }
-.toc-lesson-entry:hover,.toc-lesson-entry.active{border-color:var(--lime);background:#333047}
+.toc-lesson-entry:hover,.toc-lesson-toggle:hover{background:#333047}
+.toc-lesson-toggle{
+  display:grid;
+  place-items:center;
+  min-width:44px;
+  min-height:44px;
+  color:var(--lime);
+}
+.toc-lesson-toggle::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border:solid currentColor;
+  border-width:0 2px 2px 0;
+  transform:rotate(-45deg);
+}
+.toc-lesson-toggle[aria-expanded="true"]::before{transform:translateY(-2px) rotate(45deg)}
 .toc-lesson-sections{
   margin:12px 0 0 clamp(6px,2vw,22px);
   padding-left:clamp(10px,2vw,22px);
