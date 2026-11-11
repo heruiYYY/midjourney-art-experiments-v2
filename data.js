@@ -97,7 +97,12 @@ divider('01.6','收尾','回顾方法，布置作业，预告下一节。','Wrap
 {src:'close-next',kind:'close-next',title:'下节预告',chapter:'收尾',images:[],notes:'收尾 3/3：第 2 节「角色设计与动态展示」。\n先做五人群像，再用群像做视频，最后做不同风格的单人角色设计。\n今天选定的美术方向就是下节课的起点。'},
 {src:'lesson-opening-02',kind:'lesson-opening',lessonNumber:'02',heading:['角色设计','与动态展示'],
  title:'第 2 节 · 角色设计与动态展示',chapter:'第 2 节',images:[],
- body:'从五人群像出发，连接参考、提示词、生成筛选与动态展示。'}
+ body:'从五人群像出发，连接参考、提示词、生成筛选与动态展示。'},
+divider('02.1','角色设计思路','从五人群像出发，用角色分工和共同的美术方向确定设计目标。','Character Design Approach','角色设计思路'),
+divider('02.2','怪物角色设计','从生物参考提炼轮廓、结构和材质，比较生成结果，选出清晰可辨的造型。','Creature Design','怪物角色设计'),
+divider('02.3','人物角色设计','从身份和性格出发，用服装、道具和姿态区分人物，让群像风格统一。','Human Character Design','人物角色设计'),
+divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
+divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')
 ];
 window.COURSE.forEach(s=>{if(s.chapter==='风格与原创')s.chapter='风格'});
 })();
