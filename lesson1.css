@@ -408,3 +408,23 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   .lesson-opening-number{font-size:clamp(96px,min(32vw,24vh),220px)}
   .slide.lesson-opening h1{font-size:clamp(30px,7.5vw,65px)}
 }
+
+/* 课程目录层级 */
+.toc-lesson{margin-top:12px}
+.toc-lesson>h3{margin:0}
+.toc-lesson-entry{
+  width:100%;
+  border:1px solid var(--line);
+  background:#262338;
+  color:var(--lime);
+  text-align:left;
+  font-size:clamp(15px,1.7vw,19px);
+  font-weight:700;
+}
+.toc-lesson-entry:hover,.toc-lesson-entry.active{border-color:var(--lime);background:#333047}
+.toc-lesson-sections{
+  margin:12px 0 0 clamp(6px,2vw,22px);
+  padding-left:clamp(10px,2vw,22px);
+  border-left:1px solid var(--line);
+}
+.toc-lesson-sections h4{margin:0 0 8px;color:var(--lime);font-size:13px}
