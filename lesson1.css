@@ -505,8 +505,11 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 
 /* 角色设计流程 */
 .slide.character-workflow{
+  --workflow-clearance:clamp(24px,3vw,64px);
   grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:auto minmax(0,1fr);
+  row-gap:var(--workflow-clearance);
+  padding-bottom:var(--workflow-clearance);
   align-items:start;
 }
 .workflow-head h1{margin:0}
@@ -514,7 +517,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
   gap:clamp(18px,2vw,42px);
-  align-self:center;
+  align-self:safe center;
   list-style:none;
   margin:0;
   padding:0;
@@ -543,13 +546,10 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   text-align:center;
 }
 @media(min-width:851px){
-  .workflow-steps{padding-top:clamp(36px,4vw,68px)}
-  .workflow-steps li::before{
-    position:absolute;
-    bottom:calc(100% + 10px);
-    inset-inline:0;
-    margin:0;
-  }
+  .workflow-steps li::before{margin-bottom:10px}
+}
+@media(min-width:851px) and (max-height:800px){
+  .slide.character-workflow{--workflow-clearance:20px}
 }
 .workflow-steps li:not(:last-child) .workflow-card::after{
   content:"→";
@@ -658,7 +658,8 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 }
 @media(max-width:850px){
   .slide.character-workflow{
-    grid-template-rows:auto auto;
+    --workflow-clearance:28px;
+    grid-template-rows:auto 1fr;
     height:auto;
     min-height:100%;
   }
