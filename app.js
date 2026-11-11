@@ -9,14 +9,23 @@ const SITES=[['角色、场景、生物的设计方向','从作品研究造型�
 function openSlide(d){
 if(d.kind==='open-cover')return['open-cover',`<p class="eyebrow">VISUAL DESIGN · AI FILMMAKING</p><h1 class="open-title">AI 视频<br><em>智能生成</em></h1><div class="open-cover-foot"><p>以个人制作经验、案例拆解与流程讲解为主，<br>把一个想法发展成视觉统一、故事基本连贯的 AI 短片。</p><dl><div><dt>07</dt><dd>节课</dd></div><div><dt>3h</dt><dd>每节</dd></div><div><dt>01</dt><dd>今天</dd></div></dl></div>`];
 if(d.kind==='open-film')return['open-film',`<div class="open-head"><p class="eyebrow">开场 · 先看结果</p><h1>先看一部<em>成片</em></h1><p>六节课结束时，你也会做出这样一部短片。</p></div>${d.video?`<div class="film-frame"><video src="${esc(d.video)}" controls playsinline preload="metadata"></video></div>`:'<div class="film-frame film-empty"><span>▶</span><b>在这里放入开场短片</b><small>1–2 分钟 · 视频放入 assets/ 后填写 data.js 中 open-film 的 video 字段</small></div>'}`];
-if(d.kind==='open-roadmap')return['open-roadmap',`<div class="open-head"><p class="eyebrow">COURSE MAP · 01 — 06</p><h1>六节正课，一条<em>完整流程</em></h1><p>从一个想法，到一部能完整观看的短片。另有一节机动课。</p></div><ol class="roadmap">${LESSONS.map((l,i)=>`<li class="${i===0?'now':''}${l[0]==='07'?' spare':''}">${i===0?`<a class="roadmap-entry" href="#${slides.findIndex(s=>s.kind==='lesson-opening')+1}"><span>${l[0]}${i===0?' · 今天':''}</span><h2>${l[1]}</h2><p>${l[2]}</p></a>`:`<span>${l[0]}</span><h2>${l[1]}</h2><p>${l[2]}</p>`}</li>`).join('')}</ol><p class="roadmap-line">想法 → 参考与方向 → 角色 → 场景与道具 → 分镜与视频 → 剪辑与音乐</p>`];
-if(d.kind==='lesson-opening')return['lesson-opening',`
-  <span class="lesson-opening-number" aria-hidden="true">${LESSONS[0][0]}</span>
+if(d.kind==='open-roadmap')return['open-roadmap',`<div class="open-head"><p class="eyebrow">COURSE MAP · 01 — 06</p><h1>六节正课，一条<em>完整流程</em></h1><p>从一个想法，到一部能完整观看的短片。另有一节机动课。</p></div><ol class="roadmap">${LESSONS.map(([number,name,description],i)=>{
+ const page=slides.findIndex(slide=>slide.kind==='lesson-opening'&&(slide.lessonNumber??'01')===number)+1;
+ const card=`<span>${number}${i===0?' · 今天':''}</span><h2>${name}</h2><p>${description}</p>`;
+ const style=i===0?'now':number==='07'?'spare':'';
+ return `<li class="${style}${page?' linked':''}">${page?`<a class="roadmap-entry" href="#${page}">${card}</a>`:card}</li>`;
+}).join('')}</ol><p class="roadmap-line">想法 → 参考与方向 → 角色 → 场景与道具 → 分镜与视频 → 剪辑与音乐</p>`];
+if(d.kind==='lesson-opening'){
+ const number=d.lessonNumber??'01';
+ const [firstLine,secondLine]=d.heading??['用 Midjourney','找到你的画面'];
+ return ['lesson-opening',`
+  <span class="lesson-opening-number" aria-hidden="true">${esc(number)}</span>
   <div class="lesson-opening-copy">
-    <p class="eyebrow">第 1 节 · LESSON 01</p>
-    <h1>用 Midjourney<br><em>找到你的画面</em></h1>
+    <p class="eyebrow">第 ${Number(number)} 节 · LESSON ${esc(number)}</p>
+    <h1>${esc(firstLine)}<br><em>${esc(secondLine)}</em></h1>
     <p class="body">${esc(d.body)}</p>
   </div>`];
+}
 if(d.kind==='open-idea'){const a=window.COURSE.find(s=>s.src===24).images[0],b=window.COURSE.find(s=>s.src===30).images[0];return['open-idea',`<div class="open-head"><p class="eyebrow">CORE IDEA</p><h1>生成很便宜，<em>判断才值钱</em></h1><p>AI 让出图变快，作品的方向仍然由你的选择决定。</p></div><div class="idea-pair"><figure><div class="idea-img">${crop(a,0,0,.21,2/3)}</div><figcaption><b>随手一句提示词</b><span>只写「Character design」，得到模型的默认审美</span></figcaption></figure><span class="idea-arrow">→</span><figure><div class="idea-img">${crop(b,0,0,.285,.5)}</div><figcaption><b>有依据的选择</b><span>参考 + 情绪板 + 对照筛选，画面开始有方向</span></figcaption></figure></div>`];}
 if(d.kind==='open-today'){const rows=[['15′','开场','课程路线 · 为什么讲 Midjourney'],['35′','01 参考与研究','按问题找参考 · AI 对话做研究'],['20′','02 模型与参数','扩散原理 · Raw / Stylize · Niji 与 V7 / V8'],['40′','03 对照实验','实验卡 · Midjourney 现场生成'],['10′','休息',''],['45′','04 风格','Style Reference · Moodboard · Personalize · 原创角色'],['15′','收尾','总结 · 作业 · 下节预告']];return['open-today',`<div class="open-head"><p class="eyebrow">TODAY · 3 HOURS</p><h1>今天的<em>流程</em></h1></div><div class="today-grid"><ol class="today-list">${rows.map(r=>`<li class="${r[1]==='休息'?'rest':''}"><span>${r[0]}</span><b>${r[1]}</b><small>${r[2]}</small></li>`).join('')}</ol><div class="today-take"><span>今天带走</span><h2>一套选定美术方向的方法</h2><p>参考 → 生成 → 对照 → 判断 → 记录</p><h2>一个初步选定的方向</h2><p>作为第 2 节角色设计的起点</p></div></div>`];}
 if(d.kind==='divider')return['divider',`<span class="divider-no">${esc(d.no)}</span><div><p class="eyebrow">${esc(d.time)}</p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p></div>`];
@@ -117,31 +126,38 @@ function tocEntry({slide,page},{extraClass='',number=''}={}){
 function tocGroup(label,entries,heading){
  return `<section class="toc-group"><${heading}>${esc(label)}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
 }
-let tocLessonExpanded=true;
+const collapsedTocLessons=new Set();
+function tocLesson(opening,entries){
+ const number=opening.slide.lessonNumber??'01';
+ const sectionsId=`toc-lesson-sections-${number}`;
+ const expanded=!collapsedTocLessons.has(sectionsId);
+ const chapters=[...new Set(entries.map(entry=>entry.slide.chapter))];
+ return `<section class="toc-lesson">
+    <div class="toc-lesson-header">
+     <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number})}</h3>
+     ${chapters.length?`<button type="button" class="toc-lesson-toggle" aria-controls="${sectionsId}"
+      aria-expanded="${expanded}" aria-label="${expanded?'收起小节':'展开小节'}"></button>`:''}
+    </div>
+    ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections"${expanded?'':' hidden'}>${chapters.map((chapter,position)=>
+     tocGroup(`${number}.${position+1}　${chapter}`,entries.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>`:''}
+   </section>`;
+}
 function showToc(){
  const entries=slides.map((slide,page)=>({slide,page}));
- const opening=entries.find(entry=>entry.slide.kind==='lesson-opening');
- const lessonNumber=LESSONS[0][0];
- const lesson=entries.slice(opening.page+1);
- const chapters=[...new Set(lesson.map(entry=>entry.slide.chapter))];
+ const openings=entries.filter(entry=>entry.slide.kind==='lesson-opening');
  $('tocBody').innerHTML=
-  tocGroup('课程导览',entries.slice(0,opening.page),'h3')+
-  `<section class="toc-lesson">
-    <div class="toc-lesson-header">
-     <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number:lessonNumber})}</h3>
-     <button type="button" class="toc-lesson-toggle" aria-controls="toc-lesson-sections"
-      aria-expanded="${tocLessonExpanded}" aria-label="${tocLessonExpanded?'收起小节':'展开小节'}"></button>
-    </div>
-    <div id="toc-lesson-sections" class="toc-lesson-sections"${tocLessonExpanded?'':' hidden'}>${chapters.map((chapter,position)=>
-     tocGroup(`${lessonNumber}.${position+1}　${chapter}`,lesson.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>
-   </section>`;
- const toggle=$('tocBody').querySelector('.toc-lesson-toggle');
- toggle.onclick=()=>{
-  tocLessonExpanded=!tocLessonExpanded;
-  $('toc-lesson-sections').hidden=!tocLessonExpanded;
-  toggle.setAttribute('aria-expanded',String(tocLessonExpanded));
-  toggle.setAttribute('aria-label',tocLessonExpanded?'收起小节':'展开小节');
- };
+  tocGroup('课程导览',entries.slice(0,openings[0]?.page??entries.length),'h3')+
+  openings.map((opening,position)=>tocLesson(opening,entries.slice(opening.page+1,openings[position+1]?.page))).join('');
+ $('tocBody').querySelectorAll('.toc-lesson-toggle').forEach(toggle=>toggle.onclick=()=>{
+  const sectionsId=toggle.getAttribute('aria-controls');
+  const sections=$(sectionsId);
+  const expanded=sections.hidden;
+  sections.hidden=!expanded;
+  if(expanded) collapsedTocLessons.delete(sectionsId);
+  else collapsedTocLessons.add(sectionsId);
+  toggle.setAttribute('aria-expanded',String(expanded));
+  toggle.setAttribute('aria-label',expanded?'收起小节':'展开小节');
+ });
  $('tocBody').querySelectorAll('[data-go]').forEach(button=>button.onclick=()=>{
   go(Number(button.dataset.go));
   $('toc').close();
