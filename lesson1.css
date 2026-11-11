@@ -466,8 +466,12 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 .toc-lesson-sections h4{margin:0 0 8px;color:var(--lime);font-size:13px}
 
 @media(min-width:851px){
+  .toc-lesson-sections:not([hidden]){
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:clamp(20px,4vw,60px);
+  }
   .toc-lesson-sections .toc-links{
     grid-template-columns:minmax(0,1fr);
-    width:calc((100% - 7px) / 2);
   }
 }
