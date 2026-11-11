@@ -129,13 +129,14 @@ function roundImageCorners(img){
 function roundAllImages(){document.querySelectorAll('.slide img,#viewer img').forEach(roundImageCorners);}
 document.addEventListener('load',e=>{if(e.target.tagName==='IMG')roundImageCorners(e.target);},true);
 function fitCrops(){roundAllImages();document.querySelectorAll('.learning-art').forEach(e=>{const p=e.parentElement,r=p.getBoundingClientRect();let used=0;for(const c of p.children){if(c===e)continue;const st=getComputedStyle(c);used+=c.getBoundingClientRect().height+parseFloat(st.marginTop||0)+parseFloat(st.marginBottom||0)}const ratio=2048/(5*683),h=Math.max(0,r.height-used),w=Math.min(r.width,h*ratio);e.style.width=w+'px';e.style.height=w/ratio+'px';});document.querySelectorAll('.crop').forEach(e=>{const p=e.parentElement,r=p.getBoundingClientRect(),ratio=Number(e.dataset.ratio),w=Math.min(r.width,r.height*ratio);e.style.width=Math.max(0,w)+'px';e.style.height=Math.max(0,w/ratio)+'px';})}
-function tocEntry({slide,page},{extraClass='',number=''}={}){
+function tocEntry({slide,page},{extraClass='',number='',label=slide.title||'课程导览'}={}){
  const active=page===index;
- const label=esc(slide.title||'课程导览').replace(/\n/g,' ');
- return `<button class="${extraClass}${active?' active':''}" data-go="${page}"${active?' aria-current="page"':''}>${number?number+'　':''}${label}</button>`;
+ const text=esc(label).replace(/\n/g,' ');
+ return `<button class="${extraClass}${active?' active':''}" data-go="${page}"${active?' aria-current="page"':''}>${number?number+'　':''}${text}</button>`;
 }
-function tocGroup(label,entries,heading){
- return `<section class="toc-group"><${heading}>${esc(label)}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
+function tocGroup(label,entries,heading,headingEntry){
+ const headingContent=headingEntry?tocEntry(headingEntry,{label,extraClass:'toc-section-entry'}):esc(label);
+ return `<section class="toc-group"><${heading}>${headingContent}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
 }
 const collapsedTocLessons=new Set();
 function tocLesson(opening,entries){
@@ -149,8 +150,14 @@ function tocLesson(opening,entries){
      ${chapters.length?`<button type="button" class="toc-lesson-toggle" aria-controls="${sectionsId}"
       aria-expanded="${expanded}" aria-label="${expanded?'收起小节':'展开小节'}"></button>`:''}
     </div>
-    ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections"${expanded?'':' hidden'}>${chapters.map((chapter,position)=>
-     tocGroup(`${number}.${position+1}　${number==='01'&&chapter==='开场'?'Midjourney':chapter}`,entries.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>`:''}
+    ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections"${expanded?'':' hidden'}>${chapters.map((chapter,position)=>{
+     const sectionEntries=entries.filter(entry=>entry.slide.chapter===chapter);
+     const name=number==='01'&&chapter==='开场'?'Midjourney':chapter;
+     const label=`${number}.${position+1}　${name}`;
+     const headingEntry=number==='01'&&chapter==='参考与研究'&&sectionEntries[0].slide.kind==='divider'
+      ?sectionEntries.shift():undefined;
+     return tocGroup(label,sectionEntries,'h4',headingEntry);
+    }).join('')}</div>`:''}
    </section>`;
 }
 function showToc(){
