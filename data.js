@@ -56,7 +56,7 @@ window.COURSE=[
 {src:'open-cover',kind:'open-cover',title:'AI 视频生成 · 课程封面',chapter:'开场',images:[],notes:'开场 1/6：课程封面。\n一句话介绍：这门课用六节课，带大家把一个想法做成视觉统一、故事基本连贯的 AI 短片。'},
 {src:'open-film',kind:'open-film',title:'先看一部成片',chapter:'开场',images:[],video:'assets/opening-film.mp4?v=3',notes:'开场 2/6：播放自己的 AI 短片《陆川》（约 55 秒）。\n不急着讲方法，先让大家看到六节课最后能做出什么。'},
 {src:'open-roadmap',kind:'open-roadmap',title:'课程路线图',chapter:'开场',images:[],notes:'开场 3/6：六节课是一条完整制作流程。\n今天在第一步：明确方向、找参考、学会判断。后面的角色、场景、镜头都建立在今天选定的美术方向上。'},
-{src:'lesson-opening',kind:'lesson-opening',title:'第 1 节 · 用 Midjourney 找到你的画面',chapter:'开场',images:[],
+{src:'lesson-opening',kind:'lesson-opening',lessonNumber:'01',heading:['用 Midjourney','找到你的画面'],title:'第 1 节 · 用 Midjourney 找到你的画面',chapter:'开场',images:[],
  body:'用 AI 把参考图里的构图、光影和风格写成提示词，再用 Midjourney 做对照实验，为下一节角色设计选定美术方向。',
  notes:'开场 4/6：介绍第一节的目标。今天会从找参考走到生成、对照和筛选，最后为下一节角色设计选一个初步的美术方向。'},
 {src:'open-idea',kind:'open-idea',title:'生成很便宜，判断才值钱',chapter:'开场',images:[],notes:'开场 5/6：核心观念。\n左：只写一个基础词，得到的是模型的默认审美。\n右：有参考、有情绪板、经过对照筛选，画面才开始有方向。\nAI 让出图变得很便宜，真正决定作品质量的是你的选择和判断。'},
@@ -92,7 +92,10 @@ pick(30,{body:''}),pick(33,{reference:'assets/lucid-reference.jpg',chatUrl:'code
 divider('05','收尾','回顾方法，布置作业，预告下一节。','约 15 分钟','收尾'),
 {src:'close-recap',kind:'close-recap',title:'今天学了什么',chapter:'收尾',images:[],notes:'收尾 1/3：用四步回顾今天，每一步对应一个章节：参考 → 生成 → 对照 → 判断。\n\n首尾呼应（回到开场的「恍惚感」）：\n开场我说过，AI 生成的图很漂亮，但总有一种恍惚感，好像不是自己做的。\n今天这四步，每一步都是你在做选择：找哪张参考、用哪个模型、改哪个参数、留下哪一张。\n选择多了，画面就不再是 AI 随手给的，而是带着你的判断。\n就像穿搭：衣服不是你做的，但搭配是你的。\n希望下次大家再生成一张图，看着它的时候能说：这是我做的。'},
 {src:'close-homework',kind:'close-homework',title:'作业',chapter:'收尾',images:[],notes:'收尾 2/3：作业分两档。\n大部分同学暂时没有 Midjourney 账号，建议几个人一组合买；没有账号的先完成基础档。\n提交方式待和其他老师商量后另行通知。'},
-{src:'close-next',kind:'close-next',title:'下节预告',chapter:'收尾',images:[],notes:'收尾 3/3：第 2 节「角色设计与动态展示」。\n先做五人群像，再用群像做视频，最后做不同风格的单人角色设计。\n今天选定的美术方向就是下节课的起点。'}
+{src:'close-next',kind:'close-next',title:'下节预告',chapter:'收尾',images:[],notes:'收尾 3/3：第 2 节「角色设计与动态展示」。\n先做五人群像，再用群像做视频，最后做不同风格的单人角色设计。\n今天选定的美术方向就是下节课的起点。'},
+{src:'lesson-opening-02',kind:'lesson-opening',lessonNumber:'02',heading:['角色设计','与动态展示'],
+ title:'第 2 节 · 角色设计与动态展示',chapter:'第 2 节',images:[],
+ body:'从五人群像出发，连接参考、提示词、生成筛选与动态展示。'}
 ];
 window.COURSE.forEach(s=>{if(s.chapter==='风格与原创')s.chapter='风格'});
 })();
