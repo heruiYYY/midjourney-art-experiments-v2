@@ -384,7 +384,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   font-size:clamp(120px,min(28vw,48vh),580px);
   font-weight:750;
   font-variant-numeric:tabular-nums;
-  letter-spacing:-.085em;
+  letter-spacing:-.068em;
   line-height:.82;
 }
 .lesson-opening-copy{min-width:0}
