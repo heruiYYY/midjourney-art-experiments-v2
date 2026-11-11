@@ -522,6 +522,9 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 .workflow-steps li{
   position:relative;
   min-width:0;
+}
+.workflow-card{
+  position:relative;
   background:#171b26;
   border:1px solid #44495a;
   border-radius:12px;
@@ -548,7 +551,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     margin:0;
   }
 }
-.workflow-steps li:not(:last-child)::after{
+.workflow-steps li:not(:last-child) .workflow-card::after{
   content:"→";
   position:absolute;
   left:calc(100% + 1px);
@@ -568,12 +571,19 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   border-radius:8px;
   overflow:hidden;
 }
-.workflow-steps li>p{
+.workflow-card>p{
   margin:clamp(12px,1.4vw,24px) 0 4px;
   color:var(--ink);
   font-size:clamp(14px,1.25vw,24px);
   font-weight:650;
   line-height:1.45;
+  text-align:center;
+}
+.workflow-steps .workflow-description{
+  margin:clamp(8px,1vw,16px) 0 0;
+  color:var(--muted);
+  font-size:clamp(14px,1.05vw,20px);
+  line-height:1.4;
   text-align:center;
 }
 .workflow-browser{
@@ -658,7 +668,11 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     width:min(100%,390px);
     justify-self:center;
   }
+  .workflow-steps li:not(:last-child) .workflow-card::after{content:none}
   .workflow-steps li:not(:last-child)::after{
+    position:absolute;
+    color:var(--lime);
+    text-align:center;
     content:"↓";
     top:100%;
     left:50%;

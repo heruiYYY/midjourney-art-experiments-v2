@@ -14,22 +14,25 @@ function characterWorkflow(){
  const icons=apps=>`<div class="workflow-apps">${apps.map(([name,src])=>`
   <div class="workflow-app"><img src="${src}" alt=""><span>${name}</span></div>`).join('')}</div>`;
  const steps=[
-  ['找到适合的参考图',browser('pinterest.com','assets/image1.jpg','Pinterest 上的角色设计参考图')],
-  ['大语言模型对话',icons([
+  ['找到适合的参考图','确定创作的方向',browser('pinterest.com','assets/image1.jpg','Pinterest 上的角色设计参考图')],
+  ['大语言模型对话','获得生图关键词',icons([
    ['ChatGPT','https://chatgpt.com/unauth-mweb/apple-touch-icon.png'],
    ['豆包','https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/favicon/128x128.png']
   ])],
-  ['Midjourney出图',browser('midjourney.com','assets/mj-explore.jpg','Midjourney Explore 图像浏览页')],
-  ['转化成三维风格',icons([
+  ['Midjourney出图','生成创意作品',browser('midjourney.com','assets/mj-explore.jpg','Midjourney Explore 图像浏览页')],
+  ['转化成三维风格','优化质感、细节',icons([
    ['LibTV','https://www.libtv.com/pwa/libtv/apple-touch-icon-180.png'],
    ['Lovart','https://www.lovart.ai/favicon.ico']
   ])],
-  ['Seedance角色动画',browser('liblib.tv','assets/image7.jpg','LibTV 网页的创作精选和视频案例')]
+  ['Seedance角色动画','冲击力的动态视频',browser('liblib.tv','assets/image7.jpg','LibTV 网页的创作精选和视频案例')]
  ];
  return ['character-workflow',`
   <div class="workflow-head"><p class="eyebrow"></p><h1>角色设计流程</h1></div>
-  <ol class="workflow-steps">${steps.map(([label,visual])=>`
-   <li><div class="workflow-visual">${visual}</div><p>${label}</p></li>`).join('')}</ol>`];
+  <ol class="workflow-steps">${steps.map(([label,description,visual])=>`
+   <li>
+    <div class="workflow-card"><div class="workflow-visual">${visual}</div><p>${label}</p></div>
+    <p class="workflow-description">${description}</p>
+   </li>`).join('')}</ol>`];
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
