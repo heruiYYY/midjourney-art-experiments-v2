@@ -477,4 +477,8 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     margin-bottom:7px;
     break-inside:avoid;
   }
+  #toc-lesson-sections-01 > .toc-group:first-child .toc-links{
+    columns:1;
+    width:calc((100% - 7px) / 2);
+  }
 }
