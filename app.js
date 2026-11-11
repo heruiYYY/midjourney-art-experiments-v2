@@ -109,5 +109,31 @@ function roundImageCorners(img){
 function roundAllImages(){document.querySelectorAll('.slide img,#viewer img').forEach(roundImageCorners);}
 document.addEventListener('load',e=>{if(e.target.tagName==='IMG')roundImageCorners(e.target);},true);
 function fitCrops(){roundAllImages();document.querySelectorAll('.learning-art').forEach(e=>{const p=e.parentElement,r=p.getBoundingClientRect();let used=0;for(const c of p.children){if(c===e)continue;const st=getComputedStyle(c);used+=c.getBoundingClientRect().height+parseFloat(st.marginTop||0)+parseFloat(st.marginBottom||0)}const ratio=2048/(5*683),h=Math.max(0,r.height-used),w=Math.min(r.width,h*ratio);e.style.width=w+'px';e.style.height=w/ratio+'px';});document.querySelectorAll('.crop').forEach(e=>{const p=e.parentElement,r=p.getBoundingClientRect(),ratio=Number(e.dataset.ratio),w=Math.min(r.width,r.height*ratio);e.style.width=Math.max(0,w)+'px';e.style.height=Math.max(0,w/ratio)+'px';})}
+function tocEntry({slide,page},extraClass=''){
+ const active=page===index;
+ const label=esc(slide.title||'课程导览').replace(/\n/g,' ');
+ return `<button class="${extraClass}${active?' active':''}" data-go="${page}"${active?' aria-current="page"':''}>${String(page+1).padStart(2,'0')}　${label}</button>`;
+}
+function tocGroup(label,entries,heading){
+ return `<section class="toc-group"><${heading}>${esc(label)}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
+}
+function showToc(){
+ const entries=slides.map((slide,page)=>({slide,page}));
+ const opening=entries.find(entry=>entry.slide.kind==='lesson-opening');
+ const lesson=entries.slice(opening.page+1);
+ const chapters=[...new Set(lesson.map(entry=>entry.slide.chapter))];
+ $('tocBody').innerHTML=
+  tocGroup('课程导览',entries.slice(0,opening.page),'h3')+
+  `<section class="toc-lesson">
+    <h3>${tocEntry(opening,'toc-lesson-entry')}</h3>
+    <div class="toc-lesson-sections">${chapters.map(chapter=>
+     tocGroup(chapter,lesson.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>
+   </section>`;
+ $('tocBody').querySelectorAll('[data-go]').forEach(button=>button.onclick=()=>{
+  go(Number(button.dataset.go));
+  $('toc').close();
+ });
+ $('toc').showModal();
+}
 function go(n){index=Math.max(0,Math.min(slides.length-1,n));history.replaceState(null,'','#'+(index+1));render()}
-$('prev').onclick=()=>go(index-1);$('next').onclick=()=>go(index+1);$('page').onchange=e=>{const n=Number(e.target.value);if(Number.isInteger(n))go(n-1)};$('notesBtn').onclick=()=>$('notes').showModal();$('tocBtn').onclick=()=>{let chapters=[...new Set(slides.map(s=>s.chapter))];$('tocBody').innerHTML=chapters.map(c=>`<div class="toc-group"><h3>${esc(c)}</h3><div class="toc-links">${slides.map((s,i)=>s.chapter===c?`<button class="${i===index?'active':''}" data-go="${i}">${String(i+1).padStart(2,'0')}　${esc(s.title||'课程导览').replace(/\n/g,' ')}</button>`:'').join('')}</div></div>`).join('');document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{go(Number(b.dataset.go));$('toc').close()});$('toc').showModal()};document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());$('fullBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{toast('请使用浏览器自带全屏功能')}};function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}$('copyNotes').onclick=async()=>{try{await navigator.clipboard.writeText($('notesBody').textContent);toast('备注已复制')}catch{const r=document.createRange();r.selectNodeContents($('notesBody'));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);toast('已选中文本，请手动复制')}};document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||/INPUT|TEXTAREA/.test(e.target.tagName))return;if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();go(index+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(index-1)}if(e.key==='Home'){e.preventDefault();go(0)}if(e.key==='End'){e.preventDefault();go(slides.length-1)}if(e.key.toLowerCase()==='n')$('notes').showModal();if(e.key.toLowerCase()==='m')$('tocBtn').click();if(e.key.toLowerCase()==='f')$('fullBtn').click()});window.addEventListener('resize',fitCrops);window.addEventListener('hashchange',()=>{let n=parseInt(location.hash.slice(1),10);if(n>=1&&n<=slides.length){index=n-1;render()}});let n=parseInt(location.hash.slice(1),10);index=n>=1&&n<=slides.length?n-1:0;render();
+$('prev').onclick=()=>go(index-1);$('next').onclick=()=>go(index+1);$('page').onchange=e=>{const n=Number(e.target.value);if(Number.isInteger(n))go(n-1)};$('notesBtn').onclick=()=>$('notes').showModal();$('tocBtn').onclick=showToc;document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());$('fullBtn').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{toast('请使用浏览器自带全屏功能')}};function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}$('copyNotes').onclick=async()=>{try{await navigator.clipboard.writeText($('notesBody').textContent);toast('备注已复制')}catch{const r=document.createRange();r.selectNodeContents($('notesBody'));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);toast('已选中文本，请手动复制')}};document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]')||/INPUT|TEXTAREA/.test(e.target.tagName))return;if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();go(index+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(index-1)}if(e.key==='Home'){e.preventDefault();go(0)}if(e.key==='End'){e.preventDefault();go(slides.length-1)}if(e.key.toLowerCase()==='n')$('notes').showModal();if(e.key.toLowerCase()==='m')$('tocBtn').click();if(e.key.toLowerCase()==='f')$('fullBtn').click()});window.addEventListener('resize',fitCrops);window.addEventListener('hashchange',()=>{let n=parseInt(location.hash.slice(1),10);if(n>=1&&n<=slides.length){index=n-1;render()}});let n=parseInt(location.hash.slice(1),10);index=n>=1&&n<=slides.length?n-1:0;render();
