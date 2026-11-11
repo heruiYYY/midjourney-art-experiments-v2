@@ -681,3 +681,33 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     transform:translateX(-50%);
   }
 }
+
+/* 怪物角色设计 · 参考图 */
+.slide.creature-references{
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto minmax(0,1fr);
+  gap:clamp(20px,3vh,40px);
+  align-items:stretch;
+}
+.creature-references-head h1{margin:0}
+.creature-references-subtitle{
+  margin:clamp(8px,1.2vh,16px) 0 0;
+  color:var(--muted);
+  font-size:clamp(16px,1.2vw,24px);
+  line-height:1.5;
+}
+.creature-references-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:clamp(10px,1vw,20px);
+  min-height:0;
+}
+.creature-references-grid .media img{
+  width:100%;
+  height:100%;
+}
+@media(max-width:850px){
+  .slide.creature-references{grid-template-rows:auto auto}
+  .creature-references-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .creature-references-grid .media{min-height:0;aspect-ratio:3/4}
+}

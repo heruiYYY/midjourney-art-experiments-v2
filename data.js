@@ -101,6 +101,32 @@ divider('01.6','收尾','回顾方法，布置作业，预告下一节。','Wrap
 divider('02.1','角色设计思路','从五人群像出发，用角色分工和共同的美术方向确定设计目标。','Character Design Approach','角色设计思路'),
 {src:'character-workflow',kind:'character-workflow',title:'角色设计流程',chapter:'角色设计思路',images:[]},
 divider('02.2','怪物角色设计','从生物参考提炼轮廓、结构和材质，比较生成结果，选出清晰可辨的造型。','Creature Design','怪物角色设计'),
+{src:'creature-references',kind:'creature-references',title:'找到适合的参考图',subtitle:'确定创作的方向',chapter:'怪物角色设计',images:[
+  {
+    "src": "assets/creature-reference-01.png",
+    "alt": "以香炉和符纸为头部造型的怪物"
+  },
+  {
+    "src": "assets/creature-reference-02.png",
+    "alt": "身穿浅色长袍、肩扛长杆的鸦首角色"
+  },
+  {
+    "src": "assets/creature-reference-03.png",
+    "alt": "披着破布斗篷的蟾蜍角色"
+  },
+  {
+    "src": "assets/creature-reference-04.png",
+    "alt": "头顶灵芝、手持长柄武器的怪物"
+  },
+  {
+    "src": "assets/creature-reference-05.png",
+    "alt": "红色菌盖头部、手持长剑的角色"
+  },
+  {
+    "src": "assets/creature-reference-06.png",
+    "alt": "背负庙宇形怪物的斗笠角色"
+  }
+]},
 divider('02.3','人物角色设计','从身份和性格出发，用服装、道具和姿态区分人物，让群像风格统一。','Human Character Design','人物角色设计'),
 divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
 divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')

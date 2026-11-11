@@ -36,6 +36,13 @@ function characterWorkflow(){
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
+if(d.kind==='creature-references')return ['creature-references',`
+  <div class="creature-references-head">
+    <p class="eyebrow"></p>
+    <h1>${esc(d.title)}</h1>
+    <p class="creature-references-subtitle">${esc(d.subtitle)}</p>
+  </div>
+  <div class="creature-references-grid">${d.images.map(a=>image(a,a.alt)).join('')}</div>`];
 if(d.kind==='open-cover')return['open-cover',`<p class="eyebrow">VISUAL DESIGN · AI FILMMAKING</p><h1 class="open-title">AI 视频<br><em>智能生成</em></h1><div class="open-cover-foot"><p>以个人制作经验、案例拆解与流程讲解为主，<br>把一个想法发展成视觉统一、故事基本连贯的 AI 短片。</p><dl><div><dt>07</dt><dd>节课</dd></div><div><dt>3h</dt><dd>每节</dd></div><div><dt>01</dt><dd>今天</dd></div></dl></div>`];
 if(d.kind==='open-film')return['open-film',`<div class="open-head"><p class="eyebrow">开场 · 先看结果</p><h1>先看一部<em>成片</em></h1><p>六节课结束时，你也会做出这样一部短片。</p></div>${d.video?`<div class="film-frame"><video src="${esc(d.video)}" controls playsinline preload="metadata"></video></div>`:'<div class="film-frame film-empty"><span>▶</span><b>在这里放入开场短片</b><small>1–2 分钟 · 视频放入 assets/ 后填写 data.js 中 open-film 的 video 字段</small></div>'}`];
 if(d.kind==='open-roadmap')return['open-roadmap',`<div class="open-head"><p class="eyebrow">COURSE MAP · 01 — 06</p><h1>六节正课，一条<em>完整流程</em></h1><p>从一个想法，到一部能完整观看的短片。另有一节机动课。</p></div><ol class="roadmap">${LESSONS.map(([number,name,description],i)=>{
