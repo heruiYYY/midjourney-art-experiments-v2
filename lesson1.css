@@ -495,3 +495,10 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     grid-template-columns:minmax(0,1fr);
   }
 }
+
+.slide .section-eyebrow{text-transform:none}
+.moodboard-head .section-eyebrow{
+  margin:0 0 8px;
+  color:var(--lime);
+  text-align:left;
+}
