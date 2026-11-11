@@ -6,7 +6,33 @@ function title(d,html){return `<div class="text"><p class="eyebrow">MIDJOURNEY /
 function visual(d){return d.images.length?`<div class="visual">${image(d.images[0],d.title)}</div>`:''}
 const LESSONS=[['01','用 Midjourney 找到你的画面','会找参考、会用 AI 写提示词，让生成带上你的判断。'],['02','角色设计与动态展示','从五人群像出发，连接参考、提示词、生成筛选与动态展示。'],['03','短片角色与CG定版','分阶段确定脸部、服装与CG质感，形成可继续制作的角色资产。'],['04','场景、道具与动态测试','从城市空间走向道具、声音与动态，检查资产能否继续使用。'],['05','故事分镜与视频生成','把角色与场景转成镜头任务，完成从分镜到视频结果的判断。'],['06','剪辑与音乐生成','组织镜头、调整节奏与音乐，让作品经过完整观看与复查。'],['07','机动课','根据大家的进度补课、答疑或加练。']];
 const SITES=[['角色、场景、生物的设计方向','从作品研究造型与美术风格',[['ArtStation','https://www.artstation.com/','assets/image3.jpg'],['Behance','https://www.behance.net/','assets/image2.jpg'],['Pinterest','https://www.pinterest.com/','assets/image1.jpg']]],['电影画面','构图、光影、色彩与氛围',[['ShotDeck','https://shotdeck.com/','assets/image4.jpg']]],['传统纹样、器物与材质','为原创设计建立依据，保留出处',[['故宫数字文物库','https://digicol.dpm.org.cn/','assets/image5.jpg'],['书格','https://www.shuge.org/','assets/image6.jpg']]],['镜头、动态与节奏','观看后记录具体问题',[['哔哩哔哩','https://www.bilibili.com/','assets/image9.jpg'],['新片场','https://www.xinpianchang.com/','assets/image10.jpg']]],['AI 视频作品与制作入口','观察作品呈现，分开收集参考与工具',[['LibTV','https://www.liblib.tv/','assets/image7.jpg'],['TapNow / TapTV','https://app.tapnow.ai/home/taptv','assets/image8.jpg'],['Higgsfield','https://higgsfield.ai/zh','']]],['国内灵感与审美积累','日常多看，积累审美',[['花瓣','https://huaban.com/',''],['站酷','https://www.zcool.com.cn/',''],['小红书','https://www.xiaohongshu.com/','']]]];
+function characterWorkflow(){
+ const browser=(domain,src,alt)=>`<div class="workflow-browser">
+  <div class="workflow-browser-bar"><span class="workflow-window-controls" aria-hidden="true"><i></i><i></i><i></i></span><span>${domain}</span></div>
+  <img src="${src}" alt="${alt}">
+ </div>`;
+ const icons=apps=>`<div class="workflow-apps">${apps.map(([name,src])=>`
+  <div class="workflow-app"><img src="${src}" alt=""><span>${name}</span></div>`).join('')}</div>`;
+ const steps=[
+  ['找到适合的参考图',browser('pinterest.com','assets/image1.jpg','Pinterest 上的角色设计参考图')],
+  ['大语言模型对话',icons([
+   ['ChatGPT','https://chatgpt.com/unauth-mweb/apple-touch-icon.png'],
+   ['豆包','https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/favicon/128x128.png']
+  ])],
+  ['Midjourney出图',browser('midjourney.com','assets/mj-explore.jpg','Midjourney Explore 图像浏览页')],
+  ['转化成三维风格',icons([
+   ['LibTV','https://www.libtv.com/pwa/libtv/apple-touch-icon-180.png'],
+   ['Lovart','https://www.lovart.ai/favicon.ico']
+  ])],
+  ['Seedance角色动画','<div class="workflow-placeholder">图片待补</div>']
+ ];
+ return ['character-workflow',`
+  <div class="workflow-head"><p class="eyebrow"></p><h1>角色设计流程</h1></div>
+  <ol class="workflow-steps">${steps.map(([label,visual])=>`
+   <li><div class="workflow-visual">${visual}</div><p>${label}</p></li>`).join('')}</ol>`];
+}
 function openSlide(d){
+if(d.kind==='character-workflow')return characterWorkflow();
 if(d.kind==='open-cover')return['open-cover',`<p class="eyebrow">VISUAL DESIGN · AI FILMMAKING</p><h1 class="open-title">AI 视频<br><em>智能生成</em></h1><div class="open-cover-foot"><p>以个人制作经验、案例拆解与流程讲解为主，<br>把一个想法发展成视觉统一、故事基本连贯的 AI 短片。</p><dl><div><dt>07</dt><dd>节课</dd></div><div><dt>3h</dt><dd>每节</dd></div><div><dt>01</dt><dd>今天</dd></div></dl></div>`];
 if(d.kind==='open-film')return['open-film',`<div class="open-head"><p class="eyebrow">开场 · 先看结果</p><h1>先看一部<em>成片</em></h1><p>六节课结束时，你也会做出这样一部短片。</p></div>${d.video?`<div class="film-frame"><video src="${esc(d.video)}" controls playsinline preload="metadata"></video></div>`:'<div class="film-frame film-empty"><span>▶</span><b>在这里放入开场短片</b><small>1–2 分钟 · 视频放入 assets/ 后填写 data.js 中 open-film 的 video 字段</small></div>'}`];
 if(d.kind==='open-roadmap')return['open-roadmap',`<div class="open-head"><p class="eyebrow">COURSE MAP · 01 — 06</p><h1>六节正课，一条<em>完整流程</em></h1><p>从一个想法，到一部能完整观看的短片。另有一节机动课。</p></div><ol class="roadmap">${LESSONS.map(([number,name,description],i)=>{
