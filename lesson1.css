@@ -467,18 +467,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 
 @media(min-width:851px){
   .toc-lesson-sections .toc-links{
-    display:block;
-    columns:2;
-    column-gap:7px;
-  }
-  .toc-lesson-sections .toc-links button{
-    display:block;
-    width:100%;
-    margin-bottom:7px;
-    break-inside:avoid;
-  }
-  #toc-lesson-sections-01 > .toc-group:first-child .toc-links{
-    columns:1;
+    grid-template-columns:minmax(0,1fr);
     width:calc((100% - 7px) / 2);
   }
 }
