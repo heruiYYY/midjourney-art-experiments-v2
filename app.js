@@ -117,6 +117,7 @@ function tocEntry({slide,page},{extraClass='',number=''}={}){
 function tocGroup(label,entries,heading){
  return `<section class="toc-group"><${heading}>${esc(label)}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
 }
+let tocLessonExpanded=true;
 function showToc(){
  const entries=slides.map((slide,page)=>({slide,page}));
  const opening=entries.find(entry=>entry.slide.kind==='lesson-opening');
@@ -126,10 +127,21 @@ function showToc(){
  $('tocBody').innerHTML=
   tocGroup('课程导览',entries.slice(0,opening.page),'h3')+
   `<section class="toc-lesson">
-    <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number:lessonNumber})}</h3>
-    <div class="toc-lesson-sections">${chapters.map((chapter,position)=>
+    <div class="toc-lesson-header">
+     <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number:lessonNumber})}</h3>
+     <button type="button" class="toc-lesson-toggle" aria-controls="toc-lesson-sections"
+      aria-expanded="${tocLessonExpanded}" aria-label="${tocLessonExpanded?'收起小节':'展开小节'}"></button>
+    </div>
+    <div id="toc-lesson-sections" class="toc-lesson-sections"${tocLessonExpanded?'':' hidden'}>${chapters.map((chapter,position)=>
      tocGroup(`${lessonNumber}.${position+1}　${chapter}`,lesson.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>
    </section>`;
+ const toggle=$('tocBody').querySelector('.toc-lesson-toggle');
+ toggle.onclick=()=>{
+  tocLessonExpanded=!tocLessonExpanded;
+  $('toc-lesson-sections').hidden=!tocLessonExpanded;
+  toggle.setAttribute('aria-expanded',String(tocLessonExpanded));
+  toggle.setAttribute('aria-label',tocLessonExpanded?'收起小节':'展开小节');
+ };
  $('tocBody').querySelectorAll('[data-go]').forEach(button=>button.onclick=()=>{
   go(Number(button.dataset.go));
   $('toc').close();
