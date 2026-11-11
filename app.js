@@ -157,7 +157,7 @@ function tocLesson(opening,entries){
      const sectionEntries=entries.filter(entry=>entry.slide.chapter===chapter);
      const name=number==='01'&&chapter==='开场'?'Midjourney':chapter;
      const label=`${number}.${position+1}　${name}`;
-     const headingEntry=number==='01'&&chapter==='参考与研究'&&sectionEntries[0].slide.kind==='divider'
+     const headingEntry=sectionEntries[0].slide.kind==='divider'
       ?sectionEntries.shift():undefined;
      return tocGroup(label,sectionEntries,'h4',headingEntry);
     }).join('')}</div>`:''}
