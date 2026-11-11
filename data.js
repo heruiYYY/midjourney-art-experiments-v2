@@ -61,7 +61,7 @@ window.COURSE=[
  notes:'开场 4/6：介绍第一节的目标。今天会从找参考走到生成、对照和筛选，最后为下一节角色设计选一个初步的美术方向。'},
 {src:'open-idea',kind:'open-idea',title:'生成很便宜，判断才值钱',chapter:'开场',images:[],notes:'开场 5/6：核心观念。\n左：只写一个基础词，得到的是模型的默认审美。\n右：有参考、有情绪板、经过对照筛选，画面才开始有方向。\nAI 让出图变得很便宜，真正决定作品质量的是你的选择和判断。'},
 {src:'open-today',kind:'open-today',title:'今天的流程',chapter:'开场',images:[],notes:'开场 6/6：今天三小时的安排和最后要带走的东西。\n收尾时回到这一页，检查是否做到。'},
-pick(1,{chapter:'开场',title:'第 1 节 · 用 Midjourney 找到你的画面'}),
+pick(1,{chapter:'开场',title:'用 Midjourney 找到你的画面'}),
 {src:'why-mj',kind:'why-mj',title:'今天为什么讲 Midjourney',chapter:'开场',live:true,images:[],notes:'今天主要讲解 Midjourney，让大家探索一下 AI 生成的魅力。\nMJ 的审美口碑在第一梯队，和 Flux、Ideogram、部分 SD 微调模型并列。它赢在「默认就好看」，可以说它「审美默认值高」（不要说「公认第一」）。原因是模型的底子：训练数据中有大量设计类图片。\n\n不是说 GPT Image、Nano Banana 或者即梦生成的图片不好，只是这几个模型训练的图片集更广。在写实摄影、文字排版、可控性上，别家常常更强。GPT Image 可以生成非常真实的图片，几乎分不出真假；但要用它生成非常有设计感、艺术变化比较大的图片，是有一定门槛的。\n\n后面会教大家怎么用 GPT 生成图片。可以先说一点：GPT Image 不仅是一个图片模型，同时也是一个语言大模型，背后会根据你的话进行思考。\n\n现场测试：同一个主题，MJ 和 GPT 各生成一张，放在一起让大家对比。'},
 {src:'mj-plan',kind:'mj-plan',title:'账号：几个人合买',chapter:'开场',live:true,images:[],notes:'MJ 相对其他几个模型算是最便宜的。开一个月 30 美元的 Standard 账号，用完 15 小时快速额度后，还可以继续无限生成图片（Relax 慢速模式，需要排队）。\n大家都是学生，前期不用在这上面花很多钱，可以自己组合一下，每 3–6 个人均摊。一个月 200 块左右：6 个人每人约 35 元，3 个人每人约 70 元。\n\n现场演示：打开订阅页讲三档（Basic $10 没有 Relax，Standard $30 推荐，Pro $60），走到付款页就停，不真付款；再在设置面板里演示 Fast / Relax 怎么切换。界面导览留到「先逛 Explore」那页。\n\n套餐信息 2026 年 11 月核对自 Midjourney 官网，上课前可以再看一眼 midjourney.com/pricing。'},
 divider('01','参考与研究','先明确视觉问题，再去找参考。','约 35 分钟','参考与研究'),
