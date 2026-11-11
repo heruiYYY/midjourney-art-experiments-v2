@@ -410,6 +410,10 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 }
 
 /* 课程目录层级 */
+#toc{
+  height:85vh;
+  scrollbar-gutter:stable;
+}
 .toc-lesson{margin-top:12px}
 .toc-lesson-header{
   display:grid;
