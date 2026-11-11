@@ -357,7 +357,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 @media(max-width:850px){.roadmap{grid-template-columns:1fr 1fr}}
 
 /* 第一节篇章页 */
-.roadmap li.now{padding:0}
+.roadmap li.linked,.roadmap li.now{padding:0}
 .roadmap-entry{
   display:flex;
   flex:1;
