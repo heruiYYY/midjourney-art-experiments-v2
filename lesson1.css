@@ -698,7 +698,9 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 }
 .creature-references-grid{
   display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
+  /* Match the six source aspect ratios so the contained images share a height. */
+  grid-template-columns:minmax(0,.658888fr) minmax(0,.725676fr) minmax(0,.726452fr)
+                        minmax(0,.797965fr) minmax(0,.815485fr) minmax(0,1fr);
   gap:clamp(10px,1vw,20px);
   min-height:0;
 }
@@ -709,5 +711,5 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 @media(max-width:850px){
   .slide.creature-references{grid-template-rows:auto auto}
   .creature-references-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .creature-references-grid .media{min-height:0;aspect-ratio:3/4}
+  .creature-references-grid .media{min-height:0;aspect-ratio:1}
 }
