@@ -139,7 +139,7 @@ function tocLesson(opening,entries){
       aria-expanded="${expanded}" aria-label="${expanded?'收起小节':'展开小节'}"></button>`:''}
     </div>
     ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections"${expanded?'':' hidden'}>${chapters.map((chapter,position)=>
-     tocGroup(`${number}.${position+1}　${chapter}`,entries.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>`:''}
+     tocGroup(`${number}.${position+1}　${number==='01'&&chapter==='开场'?'Midjourney':chapter}`,entries.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>`:''}
    </section>`;
 }
 function showToc(){
