@@ -109,25 +109,26 @@ function roundImageCorners(img){
 function roundAllImages(){document.querySelectorAll('.slide img,#viewer img').forEach(roundImageCorners);}
 document.addEventListener('load',e=>{if(e.target.tagName==='IMG')roundImageCorners(e.target);},true);
 function fitCrops(){roundAllImages();document.querySelectorAll('.learning-art').forEach(e=>{const p=e.parentElement,r=p.getBoundingClientRect();let used=0;for(const c of p.children){if(c===e)continue;const st=getComputedStyle(c);used+=c.getBoundingClientRect().height+parseFloat(st.marginTop||0)+parseFloat(st.marginBottom||0)}const ratio=2048/(5*683),h=Math.max(0,r.height-used),w=Math.min(r.width,h*ratio);e.style.width=w+'px';e.style.height=w/ratio+'px';});document.querySelectorAll('.crop').forEach(e=>{const p=e.parentElement,r=p.getBoundingClientRect(),ratio=Number(e.dataset.ratio),w=Math.min(r.width,r.height*ratio);e.style.width=Math.max(0,w)+'px';e.style.height=Math.max(0,w/ratio)+'px';})}
-function tocEntry({slide,page},{extraClass='',number=String(page+1).padStart(2,'0')}={}){
+function tocEntry({slide,page},{extraClass='',number=''}={}){
  const active=page===index;
  const label=esc(slide.title||'课程导览').replace(/\n/g,' ');
  return `<button class="${extraClass}${active?' active':''}" data-go="${page}"${active?' aria-current="page"':''}>${number?number+'　':''}${label}</button>`;
 }
-function tocGroup(label,entries,heading,showPageNumbers=true){
- return `<section class="toc-group"><${heading}>${esc(label)}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry,{number:showPageNumbers?undefined:''})).join('')}</div></section>`;
+function tocGroup(label,entries,heading){
+ return `<section class="toc-group"><${heading}>${esc(label)}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
 }
 function showToc(){
  const entries=slides.map((slide,page)=>({slide,page}));
  const opening=entries.find(entry=>entry.slide.kind==='lesson-opening');
+ const lessonNumber=LESSONS[0][0];
  const lesson=entries.slice(opening.page+1);
  const chapters=[...new Set(lesson.map(entry=>entry.slide.chapter))];
  $('tocBody').innerHTML=
-  tocGroup('课程导览',entries.slice(0,opening.page),'h3',false)+
+  tocGroup('课程导览',entries.slice(0,opening.page),'h3')+
   `<section class="toc-lesson">
-    <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number:LESSONS[0][0]})}</h3>
-    <div class="toc-lesson-sections">${chapters.map(chapter=>
-     tocGroup(chapter,lesson.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>
+    <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number:lessonNumber})}</h3>
+    <div class="toc-lesson-sections">${chapters.map((chapter,position)=>
+     tocGroup(`${lessonNumber}.${position+1}　${chapter}`,lesson.filter(entry=>entry.slide.chapter===chapter),'h4')).join('')}</div>
    </section>`;
  $('tocBody').querySelectorAll('[data-go]').forEach(button=>button.onclick=()=>{
   go(Number(button.dataset.go));
