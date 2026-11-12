@@ -810,3 +810,53 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   .human-workflow-references{height:min(39vw,300px)}
   .human-workflow-dialogue{--dialogue-width:100%}
 }
+
+/* 人物角色设计 · Niji7 结果对比 */
+.slide.niji7-comparison{
+  grid-template-columns:minmax(0,.34fr) minmax(0,.66fr)!important;
+  gap:clamp(22px,3vw,64px);
+  align-items:stretch;
+}
+.niji7-results,
+.niji7-result{
+  display:grid;
+  min-height:0;
+  min-width:0;
+}
+.niji7-results{
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:clamp(14px,2.5vh,28px);
+}
+.niji7-result{
+  grid-template-rows:auto minmax(0,1fr);
+  gap:clamp(6px,1vh,12px);
+}
+.niji7-result h2{
+  margin:0;
+  color:var(--lime);
+  font-size:clamp(16px,1.2vw,24px);
+}
+.niji7-result-images{
+  --image-gap:clamp(6px,1vw,18px);
+  container-type:size;
+  display:flex;
+  gap:var(--image-gap);
+  min-height:0;
+}
+.niji7-result-images .media{
+  flex:none;
+  width:min(calc((100% - 3 * var(--image-gap)) / 4),calc(100cqh * 928 / 1232));
+  height:100%;
+}
+.niji7-result-images img{width:100%;height:100%}
+@media(max-width:850px){
+  .slide.niji7-comparison{grid-template-columns:minmax(0,1fr)!important}
+  .niji7-results,.niji7-result{grid-template-rows:auto}
+  .niji7-result-images{container-type:normal}
+  .niji7-result-images .media{
+    width:calc((100% - 3 * var(--image-gap)) / 4);
+    height:auto;
+    aspect-ratio:928/1232;
+    min-height:0;
+  }
+}

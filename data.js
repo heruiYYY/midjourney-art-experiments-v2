@@ -151,6 +151,10 @@ divider('02.3','人物角色设计','从身份和性格出发，用服装、道�
 ],
  dialogue:{src:'assets/human-workflow-04.png',alt:'上传三张参考图并输入角色设计要求的对话截图'},
  prompt:"[lira-image-prompts] 分析研究图片的角色设计，帮我重新设计一张顶级的角色设计提示词。角色的动态站立姿势，三个角色，高矮胖瘦都有，各自有不同的武器，身体自然站立，相互帅气的依靠，角色穿着战术装备。整体风格为2D动漫风，色彩运用简洁明了，对比度很高，背景为白色。角色设计十分细致完整，具有可爱的形象特征。"},
+{src:'niji7-comparison',kind:'niji7-comparison',title:'生成二维风格的设计图',body:'使用GPT的关键词生成二维风格的设计图，二次元风格推荐使用Niji7模式。',chapter:'人物角色设计',images:[],groups:[
+ {title:'LibTV-Niji7',images:[1,2,3,4].map(n=>({src:`assets/niji7-libtv-${n}.png`}))},
+ {title:'MJ-Niji7',images:[1,2,3,4].map(n=>({src:`assets/niji7-mj-${n}.png`}))}
+]},
 divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
 divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')
 ];

@@ -36,6 +36,13 @@ function characterWorkflow(){
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
+if(d.kind==='niji7-comparison')return ['niji7-comparison',`
+  <div class="text"><p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p></div>
+  <div class="niji7-results">${d.groups.map(group=>`
+   <section class="niji7-result">
+    <h2>${esc(group.title)}</h2>
+    <div class="niji7-result-images">${group.images.map((a,i)=>image(a,`${group.title} 角色设计图 ${i+1}`)).join('')}</div>
+   </section>`).join('')}</div>`];
 if(d.kind==='human-workflow'){
  const columns=d.images.map(a=>`minmax(0,${a.w/a.h}fr)`).join(' ');
  return ['human-workflow',`
