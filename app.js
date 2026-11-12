@@ -36,6 +36,25 @@ function characterWorkflow(){
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
+if(d.kind==='human-workflow'){
+ const columns=d.images.map(a=>`minmax(0,${a.w/a.h}fr)`).join(' ');
+ return ['human-workflow',`
+  <p class="eyebrow"></p>
+  <div class="human-workflow-columns">
+   <section class="human-workflow-selection">
+    <h1>选择参考图</h1>
+    <div class="human-workflow-references" style="grid-template-columns:${columns}">${d.images.map(a=>image(a,a.alt)).join('')}</div>
+   </section>
+   <section class="human-workflow-dialogue">
+    <h2>大语言模型对话</h2>
+    ${image(d.dialogue,d.dialogue.alt)}
+    <div class="human-workflow-prompt">
+     <p>${esc(d.prompt)}</p>
+     <button type="button" data-copy="${esc(d.prompt)}">复制文案</button>
+    </div>
+   </section>
+  </div>`];
+}
 if(d.kind==='creature-references')return ['creature-references',`
   <div class="creature-references-head">
     <p class="eyebrow"></p>

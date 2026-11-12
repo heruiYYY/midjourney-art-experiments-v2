@@ -128,6 +128,29 @@ divider('02.2','怪物角色设计','从生物参考提炼轮廓、结构和材�
   }
 ]},
 divider('02.3','人物角色设计','从身份和性格出发，用服装、道具和姿态区分人物，让群像风格统一。','Human Character Design','人物角色设计'),
+{src:'human-workflow',kind:'human-workflow',title:'选择参考图与大语言模型对话',chapter:'人物角色设计',
+ images:[
+  {
+    "src": "assets/human-workflow-01.jpg",
+    "w": 736,
+    "h": 1211,
+    "alt": "带白色长发和蓝绿色装备的角色设计"
+  },
+  {
+    "src": "assets/human-workflow-02.jpg",
+    "w": 800,
+    "h": 1132,
+    "alt": "肩扛武器、身穿紫黄护甲的角色设计"
+  },
+  {
+    "src": "assets/human-workflow-03.jpg",
+    "w": 4096,
+    "h": 4068,
+    "alt": "相互倚靠的双人角色设计"
+  }
+],
+ dialogue:{src:'assets/human-workflow-04.png',alt:'上传三张参考图并输入角色设计要求的对话截图'},
+ prompt:"[lira-image-prompts] 分析研究图片的角色设计，帮我重新设计一张顶级的角色设计提示词。角色的动态站立姿势，三个角色，高矮胖瘦都有，各自有不同的武器，身体自然站立，相互帅气的依靠，角色穿着战术装备。整体风格为2D动漫风，色彩运用简洁明了，对比度很高，背景为白色。角色设计十分细致完整，具有可爱的形象特征。"},
 divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
 divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')
 ];
