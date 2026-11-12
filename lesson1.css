@@ -726,6 +726,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   display:grid;
   grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
   gap:clamp(24px,3vw,64px);
+  column-gap:calc(clamp(24px,3vw,64px) + 1px);
   min-height:0;
 }
 .human-workflow-selection,
@@ -758,7 +759,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 .human-workflow-dialogue>.media,
 .human-workflow-prompt{
   width:var(--dialogue-width);
-  justify-self:start;
+  justify-self:center;
 }
 .human-workflow-dialogue>.media{align-self:start}
 .human-workflow-dialogue>.media img{display:block;width:100%;height:auto;max-height:none}
@@ -803,6 +804,9 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   border-color:var(--line);
   color:var(--lime);
   font-size:clamp(12px,.8vw,15px);
+}
+@media(min-width:851px) and (max-height:800px){
+  .human-workflow-columns{column-gap:27px}
 }
 @media(max-width:850px){
   .slide.human-workflow{grid-template-rows:auto auto}
