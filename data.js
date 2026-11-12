@@ -156,7 +156,7 @@ divider('02.3','人物角色设计','从身份和性格出发，用服装、道�
  {title:'MJ-Niji7',images:[1,2,3,4].map(n=>({src:`assets/niji7-mj-${n}.png`}))}
 ]},
 {src:'three-d-style',kind:'three-d-style',title:'转成三维风格',body:'在LibTV中生成三维风格的设计图，推荐使用Nano banana模型。',chapter:'人物角色设计',
- prompt:"图片中的人物渲染成3D效果（真实的皮肤质感、毛发质感、服装质感、金属质感），UE5渲染引擎，CG质感，白色干净背景",images:[1,2,3,4].map(n=>({src:`assets/character-3d-${n}.jpg`}))},
+ prompt:"将人物渲染为 3D。皮肤、毛发、服装和金属质感真实，UE5 渲染，CG 质感，纯白背景。",images:[1,2,3,4].map(n=>({src:`assets/character-3d-${n}.jpg`}))},
 divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
 divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')
 ];

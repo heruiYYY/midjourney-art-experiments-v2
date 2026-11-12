@@ -37,9 +37,11 @@ function characterWorkflow(){
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
 if(d.kind==='three-d-style')return ['niji7-comparison three-d-style',`
-  <div class="text">
+  <div class="three-d-header">
    <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
-   <img class="three-d-libtv" src="assets/character-3d-libtv.png" alt="LibTV" width="238" height="272">
+  </div>
+  <div class="three-d-tools">
+   <div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>
    <div class="human-workflow-prompt">
     <p>${esc(d.prompt)}</p>
     <button type="button" data-copy="${esc(d.prompt)}">复制文案</button>
