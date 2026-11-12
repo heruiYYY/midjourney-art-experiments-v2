@@ -36,6 +36,16 @@ function characterWorkflow(){
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
+if(d.kind==='three-d-style')return ['niji7-comparison three-d-style',`
+  <div class="text">
+   <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
+   <img class="three-d-libtv" src="assets/character-3d-libtv.png" alt="LibTV" width="238" height="272">
+   <div class="human-workflow-prompt">
+    <p>${esc(d.prompt)}</p>
+    <button type="button" data-copy="${esc(d.prompt)}">复制文案</button>
+   </div>
+  </div>
+  <div class="three-d-gallery">${d.images.map((a,i)=>image(a,`三维角色设计图 ${i+1}`)).join('')}</div>`];
 if(d.kind==='niji7-comparison')return ['niji7-comparison',`
   <div class="text"><p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p></div>
   <div class="niji7-results">${d.groups.map(group=>`

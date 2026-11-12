@@ -880,3 +880,32 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     min-height:0;
   }
 }
+
+/* 人物角色设计 · 三维风格 */
+.three-d-libtv{
+  display:block;
+  width:clamp(64px,5vw,100px);
+  height:auto;
+  margin:clamp(12px,2vh,24px) 0;
+}
+.three-d-style .human-workflow-prompt{width:100%}
+.three-d-gallery{
+  --image-gap:clamp(6px,1vw,18px);
+  container-type:size;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--image-gap);
+  min-width:0;
+  min-height:0;
+}
+.three-d-gallery .media{
+  flex:none;
+  width:min(calc((100% - 3 * var(--image-gap)) / 4),calc(100cqh * 1792 / 2400));
+  aspect-ratio:1792/2400;
+}
+.three-d-gallery img{width:100%;height:100%}
+@media(max-width:850px){
+  .three-d-gallery{container-type:normal;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .three-d-gallery .media{width:100%;min-height:0}
+}
