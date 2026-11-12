@@ -41,7 +41,12 @@ function splitSlideHeader(d){
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
-if(d.kind==='motion-keywords'||d.kind==='course-outcome')return ['niji7-comparison three-d-style motion-keywords',splitSlideHeader(d)];
+if(d.kind==='course-outcome')return ['niji7-comparison three-d-style course-outcome',`
+  ${splitSlideHeader(d)}
+  <div class="course-outcome-videos">${d.videos.map((video,i)=>`
+    <video src="${esc(video)}" aria-label="角色动态视频 ${i+1}" controls playsinline preload="metadata"></video>
+  `).join('')}</div>`];
+if(d.kind==='motion-keywords')return ['niji7-comparison three-d-style motion-keywords',splitSlideHeader(d)];
 if(d.kind==='three-d-style'||d.kind==='character-variants'){
  const editable=d.kind==='character-variants';
  return [`niji7-comparison three-d-style${editable?' character-variants':''}`,`
