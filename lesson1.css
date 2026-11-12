@@ -967,7 +967,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   --reference-ratio:calc(1792 / 2400);
   --result-ratio:calc(2048 / 1152);
   --gallery-fit-height:calc((100cqw - var(--image-gap)) / (var(--reference-ratio) + var(--result-ratio)));
-  --gallery-height:min(100cqh,var(--gallery-fit-height));
+  --gallery-height:min(100cqh,var(--gallery-fit-height),calc((100cqw - 3 * var(--image-gap)) / 4 / var(--reference-ratio)));
 }
 .character-variants .three-d-gallery .media{
   min-height:0;
@@ -982,7 +982,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   box-sizing:border-box;
   field-sizing:content;
   width:100%;
-  min-height:10em;
+  min-height:3.2em;
   padding:0;
   border:0;
   background:transparent;
@@ -990,7 +990,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   font:inherit;
   font-size:clamp(13px,.95vw,19px);
   line-height:1.6;
-  resize:vertical;
+  resize:none;
 }
 @media(max-width:850px){
   .character-variants .three-d-gallery{

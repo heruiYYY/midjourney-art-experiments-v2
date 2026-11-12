@@ -43,7 +43,7 @@ if(d.kind==='three-d-style'||d.kind==='character-variants'){
    <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
   </div>
   <div class="three-d-tools">
-   ${editable?'':'<div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>'}
+   <div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>
    <div class="human-workflow-prompt">
     ${editable?`<textarea aria-label="编辑提示词" spellcheck="false">${esc(d.prompt)}</textarea>`:`<p>${esc(d.prompt)}</p>`}
     <button type="button" data-copy="${esc(d.prompt)}">复制文案</button>
