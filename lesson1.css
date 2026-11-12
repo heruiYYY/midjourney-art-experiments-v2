@@ -752,7 +752,35 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 }
 .human-workflow .media{min-height:0}
 .human-workflow-references img{width:100%;height:100%}
-.human-workflow-dialogue img{width:100%;max-height:min(100%,34vh)}
+.human-workflow-dialogue{--dialogue-width:min(100%,calc(34vh * 932 / 430))}
+.human-workflow-dialogue-head,
+.human-workflow-dialogue>.media,
+.human-workflow-prompt{
+  width:var(--dialogue-width);
+  justify-self:start;
+}
+.human-workflow-dialogue>.media{align-self:start}
+.human-workflow-dialogue>.media img{display:block;width:100%;height:auto;max-height:none}
+.human-workflow-dialogue-head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px 16px;
+}
+.human-workflow-chatgpt{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--muted);
+  font-size:clamp(12px,.9vw,17px);
+}
+.human-workflow-chatgpt img{
+  display:block;
+  width:clamp(25px,2.1vw,40px);
+  aspect-ratio:1;
+  border-radius:50%;
+}
 .human-workflow-prompt{
   display:grid;
   justify-items:start;
@@ -780,5 +808,5 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   .human-workflow-columns{grid-template-columns:minmax(0,1fr)}
   .human-workflow-selection{grid-template-rows:auto auto}
   .human-workflow-references{height:min(39vw,300px)}
-  .human-workflow-dialogue img{max-height:none}
+  .human-workflow-dialogue{--dialogue-width:100%}
 }

@@ -46,7 +46,10 @@ if(d.kind==='human-workflow'){
     <div class="human-workflow-references" style="grid-template-columns:${columns}">${d.images.map(a=>image(a,a.alt)).join('')}</div>
    </section>
    <section class="human-workflow-dialogue">
-    <h2>大语言模型对话</h2>
+    <div class="human-workflow-dialogue-head">
+     <h2>大语言模型对话</h2>
+     <span class="human-workflow-chatgpt"><img src="https://chatgpt.com/unauth-mweb/apple-touch-icon.png" alt="">ChatGPT</span>
+    </div>
     ${image(d.dialogue,d.dialogue.alt)}
     <div class="human-workflow-prompt">
      <p>${esc(d.prompt)}</p>
