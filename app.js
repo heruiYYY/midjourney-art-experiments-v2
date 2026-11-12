@@ -58,7 +58,11 @@ if(d.kind==='niji7-comparison')return ['niji7-comparison',`
   <div class="niji7-results">${d.groups.map(group=>`
    <section class="niji7-result">
     <h2>${esc(group.title)}</h2>
-    <div class="niji7-result-images">${group.images.map((a,i)=>image(a,`${group.title} 角色设计图 ${i+1}`)).join('')}</div>
+    <div class="niji7-result-images">
+     ${group.title==='LibTV-Niji7'
+       ?'<span class="niji7-platform three-d-libtv" role="img" aria-label="LibTV"><span aria-hidden="true"></span></span>'
+       :'<span class="niji7-platform niji7-platform-mj"><img src="https://www.midjourney.com/public/apple-touch-icon.png" alt="Midjourney"></span>'}
+     ${group.images.map((a,i)=>image(a,`${group.title} 角色设计图 ${i+1}`)).join('')}</div>
    </section>`).join('')}</div>`];
 if(d.kind==='human-workflow'){
  const columns=d.images.map(a=>`minmax(0,${a.w/a.h}fr)`).join(' ');
