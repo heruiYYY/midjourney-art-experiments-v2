@@ -36,12 +36,12 @@ function characterWorkflow(){
 }
 function splitSlideHeader(d){
  return `<div class="three-d-header">
-   <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
+   <p class="eyebrow">${esc(d.eyebrow)}</p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
   </div>`;
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
-if(d.kind==='motion-keywords')return ['niji7-comparison three-d-style motion-keywords',splitSlideHeader(d)];
+if(d.kind==='motion-keywords'||d.kind==='course-outcome')return ['niji7-comparison three-d-style motion-keywords',splitSlideHeader(d)];
 if(d.kind==='three-d-style'||d.kind==='character-variants'){
  const editable=d.kind==='character-variants';
  return [`niji7-comparison three-d-style${editable?' character-variants':''}`,`
@@ -249,14 +249,15 @@ function tocGroup(label,entries,heading,headingEntry){
 function tocLesson(opening,entries){
  const number=opening.slide.lessonNumber??'01';
  const sectionsId=`toc-lesson-sections-${number}`;
- const chapters=[...new Set(entries.map(entry=>entry.slide.chapter))];
+ const intro=entries.find(entry=>entry.slide.kind==='course-outcome');
+ const chapters=[...new Set(entries.filter(entry=>entry!==intro).map(entry=>entry.slide.chapter))];
  return `<section class="toc-lesson">
     <div class="toc-lesson-header">
      <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number})}</h3>
-     ${chapters.length?`<button type="button" class="toc-lesson-toggle" aria-controls="${sectionsId}"
+     ${(intro||chapters.length)?`<button type="button" class="toc-lesson-toggle" aria-controls="${sectionsId}"
       aria-expanded="false" aria-label="展开小节"></button>`:''}
     </div>
-    ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections" hidden>${chapters.map((chapter,position)=>{
+    ${(intro||chapters.length)?`<div id="${sectionsId}" class="toc-lesson-sections" hidden>${intro?`<div class="toc-links toc-lesson-intro">${tocEntry(intro)}</div>`: ''}${chapters.map((chapter,position)=>{
      const sectionEntries=entries.filter(entry=>entry.slide.chapter===chapter);
      const name=number==='01'&&chapter==='开场'?'Midjourney':chapter;
      const label=`${number}.${position+1}　${name}`;

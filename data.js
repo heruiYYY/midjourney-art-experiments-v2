@@ -98,6 +98,7 @@ divider('01.6','收尾','回顾方法，布置作业，预告下一节。','Wrap
 {src:'lesson-opening-02',kind:'lesson-opening',lessonNumber:'02',heading:['角色设计','与动态展示'],
  title:'第 2 节 · 角色设计与动态展示',chapter:'第 2 节',images:[],
  body:'从五人群像出发，连接参考、提示词、生成筛选与动态展示。'},
+{src:'course-outcome',kind:'course-outcome',title:'课程成果',body:'生成自己的角色动态视频',eyebrow:'02 角色设计与动态展示',chapter:'课程成果',images:[]},
 divider('02.1','角色设计思路','从五人群像出发，用角色分工和共同的美术方向确定设计目标。','Character Design Approach','角色设计思路'),
 {src:'character-workflow',kind:'character-workflow',title:'角色设计流程',chapter:'角色设计思路',images:[]},
 divider('02.2','怪物角色设计','从生物参考提炼轮廓、结构和材质，比较生成结果，选出清晰可辨的造型。','Creature Design','怪物角色设计'),
