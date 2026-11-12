@@ -34,14 +34,18 @@ function characterWorkflow(){
     <p class="workflow-description">${description}</p>
    </li>`).join('')}</ol>`];
 }
+function splitSlideHeader(d){
+ return `<div class="three-d-header">
+   <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
+  </div>`;
+}
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
+if(d.kind==='motion-keywords')return ['niji7-comparison three-d-style motion-keywords',splitSlideHeader(d)];
 if(d.kind==='three-d-style'||d.kind==='character-variants'){
  const editable=d.kind==='character-variants';
  return [`niji7-comparison three-d-style${editable?' character-variants':''}`,`
-  <div class="three-d-header">
-   <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
-  </div>
+  ${splitSlideHeader(d)}
   ${editable?'<div class="character-variants-content">':''}
   <div class="three-d-tools">
    <div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>

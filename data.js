@@ -163,6 +163,7 @@ divider('02.3','人物角色设计','从身份和性格出发，用服装、道�
   {src:'assets/character-variants-vanguard.jpg',alt:'VANGUARD 四人组合设计图'}
  ]},
 divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
+{src:'motion-keywords',kind:'motion-keywords',title:'角色出场动态的关键词',body:'团队组合图+大语言模型=角色出场的分镜脚本关键词',chapter:'动态展示',images:[]},
 divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')
 ];
 window.COURSE.forEach(s=>{if(s.chapter==='风格与原创')s.chapter='风格'});

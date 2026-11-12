@@ -928,6 +928,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   grid-template-rows:auto minmax(0,1fr);
   row-gap:clamp(18px,2.8vh,32px);
 }
+.slide.motion-keywords{align-content:start}
 .three-d-header{
   grid-column:1/-1;
   display:grid;
