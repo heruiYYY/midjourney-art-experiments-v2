@@ -42,6 +42,7 @@ if(d.kind==='three-d-style'||d.kind==='character-variants'){
   <div class="three-d-header">
    <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
   </div>
+  ${editable?'<div class="character-variants-content">':''}
   <div class="three-d-tools">
    <div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>
    <div class="human-workflow-prompt">
@@ -49,7 +50,8 @@ if(d.kind==='three-d-style'||d.kind==='character-variants'){
     <button type="button" data-copy="${esc(d.prompt)}">复制文案</button>
    </div>
   </div>
-  <div class="three-d-gallery">${d.images.map((a,i)=>image(a,a.alt||`三维角色设计图 ${i+1}`)).join('')}</div>`];
+  <div class="three-d-gallery">${d.images.map((a,i)=>image(a,a.alt||`三维角色设计图 ${i+1}`)).join('')}</div>
+  ${editable?'</div>':''}`];
 }
 if(d.kind==='niji7-comparison')return ['niji7-comparison',`
   <div class="text"><p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p></div>
