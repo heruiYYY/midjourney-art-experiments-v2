@@ -825,7 +825,6 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 }
 .niji7-comparison .text{justify-content:flex-start}
 .slide.niji7-comparison .eyebrow{margin:0 0 clamp(18px,2.8vh,32px)}
-.slide.niji7-comparison h1{margin-bottom:clamp(24px,4vh,48px)}
 .slide.niji7-comparison .body{font-size:clamp(13px,1.05vw,20px)}
 .niji7-comparison .text .body{max-width:24em}
 .niji7-results,
@@ -946,4 +945,18 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   .slide.three-d-style .body{text-align:left}
   .three-d-gallery{container-type:normal;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
   .three-d-gallery .media{width:100%;min-height:0}
+}
+
+/* 第 2 节 · 标题下方的说明间距 */
+.slide.lesson-02{--lesson-title-gap:clamp(24px,4vh,48px)}
+.lesson-02 :is(.lesson-opening-copy,.divider-copy,.creature-references-head,.niji7-comparison .text)>h1{
+  margin-bottom:0;
+}
+.lesson-02 :is(.lesson-opening-copy,.divider-copy,.creature-references-head,.niji7-comparison .text)>h1+p{
+  margin-top:var(--lesson-title-gap);
+}
+@media(max-width:850px){
+  .slide.lesson-02.three-d-style .body{
+    margin-top:calc(var(--lesson-title-gap) - clamp(12px,2vh,24px));
+  }
 }
