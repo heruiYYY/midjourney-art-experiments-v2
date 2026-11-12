@@ -246,19 +246,17 @@ function tocGroup(label,entries,heading,headingEntry){
  const headingContent=headingEntry?tocEntry(headingEntry,{label,extraClass:'toc-section-entry'}):esc(label);
  return `<section class="toc-group"><${heading}>${headingContent}</${heading}><div class="toc-links">${entries.map(entry=>tocEntry(entry)).join('')}</div></section>`;
 }
-const collapsedTocLessons=new Set();
 function tocLesson(opening,entries){
  const number=opening.slide.lessonNumber??'01';
  const sectionsId=`toc-lesson-sections-${number}`;
- const expanded=!collapsedTocLessons.has(sectionsId);
  const chapters=[...new Set(entries.map(entry=>entry.slide.chapter))];
  return `<section class="toc-lesson">
     <div class="toc-lesson-header">
      <h3>${tocEntry(opening,{extraClass:'toc-lesson-entry',number})}</h3>
      ${chapters.length?`<button type="button" class="toc-lesson-toggle" aria-controls="${sectionsId}"
-      aria-expanded="${expanded}" aria-label="${expanded?'收起小节':'展开小节'}"></button>`:''}
+      aria-expanded="false" aria-label="展开小节"></button>`:''}
     </div>
-    ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections"${expanded?'':' hidden'}>${chapters.map((chapter,position)=>{
+    ${chapters.length?`<div id="${sectionsId}" class="toc-lesson-sections" hidden>${chapters.map((chapter,position)=>{
      const sectionEntries=entries.filter(entry=>entry.slide.chapter===chapter);
      const name=number==='01'&&chapter==='开场'?'Midjourney':chapter;
      const label=`${number}.${position+1}　${name}`;
@@ -279,8 +277,6 @@ function showToc(){
   const sections=$(sectionsId);
   const expanded=sections.hidden;
   sections.hidden=!expanded;
-  if(expanded) collapsedTocLessons.delete(sectionsId);
-  else collapsedTocLessons.add(sectionsId);
   toggle.setAttribute('aria-expanded',String(expanded));
   toggle.setAttribute('aria-label',expanded?'收起小节':'展开小节');
  });
