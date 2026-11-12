@@ -961,3 +961,41 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
     margin-top:calc(var(--lesson-title-gap) - var(--section-label-gap));
   }
 }
+
+/* 人物角色设计 · 角色和造型的裂变 */
+.character-variants .three-d-gallery{
+  --reference-ratio:calc(1792 / 2400);
+  --result-ratio:calc(2048 / 1152);
+  --gallery-fit-height:calc((100cqw - var(--image-gap)) / (var(--reference-ratio) + var(--result-ratio)));
+  --gallery-height:min(100cqh,var(--gallery-fit-height));
+}
+.character-variants .three-d-gallery .media{
+  min-height:0;
+  width:calc(var(--gallery-height) * var(--reference-ratio));
+  aspect-ratio:var(--reference-ratio);
+}
+.character-variants .three-d-gallery .media:last-child{
+  width:calc(var(--gallery-height) * var(--result-ratio));
+  aspect-ratio:var(--result-ratio);
+}
+.character-variants .human-workflow-prompt textarea{
+  box-sizing:border-box;
+  field-sizing:content;
+  width:100%;
+  min-height:10em;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--ink);
+  font:inherit;
+  font-size:clamp(13px,.95vw,19px);
+  line-height:1.6;
+  resize:vertical;
+}
+@media(max-width:850px){
+  .character-variants .three-d-gallery{
+    display:flex;
+    container-type:inline-size;
+    --gallery-height:var(--gallery-fit-height);
+  }
+}

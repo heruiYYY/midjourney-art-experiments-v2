@@ -157,6 +157,11 @@ divider('02.3','人物角色设计','从身份和性格出发，用服装、道�
 ]},
 {src:'three-d-style',kind:'three-d-style',title:'转成三维风格',body:'在LibTV中生成三维风格的设计图，推荐使用Nano banana模型。',chapter:'人物角色设计',
  prompt:"将人物渲染为 3D。皮肤、毛发、服装和金属质感真实，UE5 渲染，CG 质感，纯白背景。",images:[1,2,3,4].map(n=>({src:`assets/character-3d-${n}.jpg`}))},
+{src:'character-variants',kind:'character-variants',title:'角色和造型的裂变',body:'生成相同风格的人物组合形象设计，推荐使用Image模型。',chapter:'人物角色设计',
+ prompt:"根据参考图风格，生成一组4人完全不同的角色样貌、服饰、武器、动作姿势等等的角色组合图。人物的背后添加组合的名字，英文字体，粗狂有力，大字。避免生成中出现杂碎的细节，画面要柔和让人物显的更干净立体。",images:[
+  {src:'assets/character-3d-2.jpg',alt:'三人组合参考图'},
+  {src:'assets/character-variants-vanguard.jpg',alt:'VANGUARD 四人组合设计图'}
+ ]},
 divider('02.4','动态展示','让角色动起来，观察动作中轮廓、服装和道具是否依然清楚。','Character Motion','动态展示'),
 divider('02.5','收尾','回看角色设计和动态测试，整理可用于下一节定版的方案。','Wrap-up','收尾')
 ];

@@ -36,18 +36,21 @@ function characterWorkflow(){
 }
 function openSlide(d){
 if(d.kind==='character-workflow')return characterWorkflow();
-if(d.kind==='three-d-style')return ['niji7-comparison three-d-style',`
+if(d.kind==='three-d-style'||d.kind==='character-variants'){
+ const editable=d.kind==='character-variants';
+ return [`niji7-comparison three-d-style${editable?' character-variants':''}`,`
   <div class="three-d-header">
    <p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p>
   </div>
   <div class="three-d-tools">
-   <div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>
+   ${editable?'':'<div class="three-d-libtv"><span aria-hidden="true"></span>LibTV</div>'}
    <div class="human-workflow-prompt">
-    <p>${esc(d.prompt)}</p>
+    ${editable?`<textarea aria-label="编辑提示词" spellcheck="false">${esc(d.prompt)}</textarea>`:`<p>${esc(d.prompt)}</p>`}
     <button type="button" data-copy="${esc(d.prompt)}">复制文案</button>
    </div>
   </div>
-  <div class="three-d-gallery">${d.images.map((a,i)=>image(a,`三维角色设计图 ${i+1}`)).join('')}</div>`];
+  <div class="three-d-gallery">${d.images.map((a,i)=>image(a,a.alt||`三维角色设计图 ${i+1}`)).join('')}</div>`];
+}
 if(d.kind==='niji7-comparison')return ['niji7-comparison',`
   <div class="text"><p class="eyebrow"></p><h1>${esc(d.title)}</h1><p class="body">${esc(d.body)}</p></div>
   <div class="niji7-results">${d.groups.map(group=>`
@@ -198,6 +201,11 @@ else if(d.src===24){cls='full-original';inside=title({...d,body:'基础角色词
 else if(d.src===25){cls='wide style-case';inside=`<div class="case-head"><div><p class="eyebrow">MIDJOURNEY / STYLE REFERENCE</p><h1>Style Reference</h1></div><p class="case-intro">使用具体图像作为风格参考<span>挂载参考图片 → 观察生成结果</span></p></div><figure class="case-figure"><img src="assets/style-reference-case.svg" width="1507" height="966" alt="完整风格参考案例：上方为参考图片挂载栏，下方为两组角色生成结果及对应参考图片" data-full="assets/style-reference-case.svg"><figcaption><span>相同文字主题，搭配不同图像风格参考 · 原课件案例</span><span>查看合成大图 ↗</span></figcaption></figure>`;}
 else {inside=title(d)+visual(d);if([9,10,14,15,26].includes(d.src))cls='wide';}
 $('stage').classList.toggle('lesson-opening-stage',d.kind==='lesson-opening');$('stage').classList.toggle('reference-stage',d.src===20);$('stage').classList.toggle('learning-stage',d.src===14);$('stage').classList.toggle('conditioning-stage',d.src===26);$('stage').classList.toggle('moodboard-stage',d.src===27);$('stage').innerHTML=`<section class="slide ${cls}${lesson?.lessonNumber==='02'?' lesson-02':''}">${inside}</section>`;
+const editor=$('stage').querySelector('.character-variants textarea');
+if(editor)editor.addEventListener('input',()=>{
+ d.prompt=editor.value;
+ editor.nextElementSibling.dataset.copy=editor.value;
+});
 if(d.kind!=='divider'&&d.kind!=='lesson-opening'){
  const section=slides.findLast((slide,page)=>page<index&&(slide.kind==='divider'||slide.kind==='lesson-opening'));
  const label=$('stage').querySelector('.eyebrow');
