@@ -818,13 +818,14 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 
 /* 人物角色设计 · Niji7 结果对比 */
 .slide.niji7-comparison{
+  --section-label-gap:clamp(18px,2.8vh,32px);
   grid-template-columns:minmax(0,.34fr) minmax(0,.66fr)!important;
   gap:clamp(22px,3vw,64px);
   column-gap:calc(clamp(24px,3vw,64px) + 1px);
   align-items:stretch;
 }
 .niji7-comparison .text{justify-content:flex-start}
-.slide.niji7-comparison .eyebrow{margin:0 0 clamp(18px,2.8vh,32px)}
+.slide.niji7-comparison .eyebrow{margin:0 0 var(--section-label-gap)}
 .slide.niji7-comparison .body{font-size:clamp(13px,1.05vw,20px)}
 .niji7-comparison .text .body{max-width:24em}
 .niji7-results,
@@ -893,7 +894,7 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   align-items:end;
-  gap:clamp(12px,2vh,24px) 24px;
+  gap:var(--section-label-gap) 24px;
 }
 .slide.three-d-style .eyebrow{grid-column:1/-1;margin:0}
 .slide.three-d-style h1{margin:0}
@@ -957,6 +958,6 @@ div.look-questions>button.on{background:#2a2440;border-color:var(--lime)}
 }
 @media(max-width:850px){
   .slide.lesson-02.three-d-style .body{
-    margin-top:calc(var(--lesson-title-gap) - clamp(12px,2vh,24px));
+    margin-top:calc(var(--lesson-title-gap) - var(--section-label-gap));
   }
 }
